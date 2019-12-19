@@ -1,14 +1,13 @@
-docker build -t alexioan87/multi-client:latest -t alexioan87/multi-client:$SHA ./client/Dockerfile ./client
-docker build -t alexioan87/multi-server:latest -t alexioan87/multi-server:$SHA ./client/Dockerfile ./server
-docker build -t alexioan87/multi-worker:latest -t alexioan87/multi-worker:$SHA ./client/Dockerfile ./worker
+docker build -t alexioan87/multi-client:latest -t alexioan87/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t alexioan87/multi-server:latest -t alexioan87/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t alexioan87/multi-worker:latest -t alexioan87/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 
 docker push alexioan87/multi-client:latest
-docker push alexioan87/multi-client:$SHA
-
 docker push alexioan87/multi-server:latest
-docker push alexioan87/multi-server:$SHA
-
 docker push alexioan87/multi-worker:latest
+
+docker push alexioan87/multi-client:$SHA
+docker push alexioan87/multi-server:$SHA
 docker push alexioan87/multi-worker:$SHA
 
 kubectl apply -f k8s
